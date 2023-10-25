@@ -25,14 +25,23 @@ int main()
     ll ar[n];
     for (int i = 0; i < n; i++)
         cin >> ar[i];
-    ll mx_sum = LONG_MIN, sum = 0;
+    ll mx_sum = LONG_MIN, sum = 0, start = -1, end = -1;
     for (int i = 0; i < n; i++)
     {
+        if (sum == 0)
+            start = i;
         sum += ar[i];
-        mx_sum = max(mx_sum, sum);
+        if (sum >= mx_sum)
+        {
+            mx_sum = sum;
+            end = i;
+        }
         if (sum < 0)
             sum = 0;
     }
+    for (int i = start; i <= end; i++)
+        cout << ar[i] << " ";
+    cout << endl;
     cout << mx_sum << endl;
     return 0;
 }
